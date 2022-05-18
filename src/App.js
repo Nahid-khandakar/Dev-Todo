@@ -3,11 +3,12 @@ import './App.css';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/Login/SignUp';
+import Navbar from './pages/Navbar/Navbar';
 
 function App() {
   return (
     <div>
-      <h1 className='text-center text-4xl font-bold py-10 text-white'>Dev-<span className='text-accent'>toDo</span></h1>
+      <Navbar></Navbar>
 
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>

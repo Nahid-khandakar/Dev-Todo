@@ -1,25 +1,43 @@
 import React from 'react';
-import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const Login = () => {
-
     //google sign in
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+
+    const handleLogin = event => {
+        event.preventDefault();
+
+        const email = event.target.email.value
+        const password = event.target.password.value
+
+        signInWithEmailAndPassword(email, password)
+
+    }
     return (
+
+
 
         <div className='bg-white'>
             <div className='flex flex-col items-center pt-14 h-screen text-gray-700'>
                 <h1 class="font-bold text-2xl">Welcome Back</h1>
 
-                <form className=''>
-                    <label class="font-semibold text-xs" for="usernameField">Username or Email</label>
-                    <input class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="text" />
+                <form onSubmit={handleLogin}>
+                    <label class="font-semibold text-xs" for="usernameField">Email</label>
+                    <input class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="email" name='email' />
 
                     <label class="font-semibold text-xs mt-3" for="passwordField">Password</label>
-                    <input class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="password" />
+                    <input class="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" type="password" name='password' />
 
                     <button class="flex items-center justify-center h-12 px-6 w-64 bg-accent mt-8 rounded font-semibold text-sm text-white">Login</button>
 
