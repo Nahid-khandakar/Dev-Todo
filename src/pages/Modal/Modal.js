@@ -23,7 +23,7 @@ const Modal = () => {
             taskDescription: description
         }
 
-        fetch('http://https://mysterious-anchorage-13295.herokuapp.com/task', {
+        fetch('https://mysterious-anchorage-13295.herokuapp.com/task', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

@@ -10,7 +10,7 @@ const TaskManage = () => {
     useEffect(() => {
 
         if (user) {
-            fetch(`http://https://mysterious-anchorage-13295.herokuapp.com/task/?userEmail=${user.email}`)
+            fetch(`https://mysterious-anchorage-13295.herokuapp.com/task/?userEmail=${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setTasks(data)

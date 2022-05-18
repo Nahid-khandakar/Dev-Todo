@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,7 +17,7 @@ const ManageCard = ({ task }) => {
         const confirmDelete = window.confirm('Sure to delete')
 
         if (confirmDelete) {
-            const url = `http://https://mysterious-anchorage-13295.herokuapp.com/task/${id}`
+            const url = `https://mysterious-anchorage-13295.herokuapp.com/task/${id}`
             fetch(url, {
                 method: 'DELETE',
             })
