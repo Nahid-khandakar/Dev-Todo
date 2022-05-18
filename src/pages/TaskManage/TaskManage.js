@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 import ManageCard from './ManageCard';
 
 const TaskManage = () => {
-
+    const [user] = useAuthState(auth);
     const [tasks, setTasks] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/task')
-            .then(res => res.json())
-            .then(data => {
-                setTasks(data)
-            })
-    }, [])
+
+        if (user) {
+            fetch(`http://localhost:5000/task/?userEmail=${user.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    setTasks(data)
+                })
+        }
+
+    }, [user])
 
     return (
         <div>

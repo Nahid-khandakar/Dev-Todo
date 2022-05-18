@@ -1,13 +1,24 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import Loading from '../Loading/Loading';
 
 const Modal = () => {
 
+    const [user, loading] = useAuthState(auth);
+
+    if (loading) {
+        return <Loading></Loading>
+    }
+
     const handleForm = event => {
         event.preventDefault();
+        const userEmail = user.email
         const task = event.target.task.value
         const description = event.target.description.value
 
         const taskData = {
+            email: userEmail,
             taskName: task,
             taskDescription: description
         }
@@ -21,7 +32,8 @@ const Modal = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                //console.log(data)
+                event.target.reset()
             })
     }
 

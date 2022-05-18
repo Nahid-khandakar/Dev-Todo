@@ -1,8 +1,9 @@
-import React from 'react';
+
 import Modal from '../Modal/Modal';
 import TaskManage from '../TaskManage/TaskManage';
 
 const Home = () => {
+
     return (
         <div className='text-center'>
             <Modal></Modal>
