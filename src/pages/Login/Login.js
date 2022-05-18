@@ -1,6 +1,13 @@
 import React from 'react';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Login = () => {
+
+    //google sign in
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+
     return (
 
         <div className='bg-white'>
@@ -16,19 +23,25 @@ const Login = () => {
 
                     <button class="flex items-center justify-center h-12 px-6 w-64 bg-accent mt-8 rounded font-semibold text-sm text-white">Login</button>
 
-                    <div class="flex mt-6 justify-center text-xs">
-                        <h1>New to todo app?  </h1>
-                        <a class="text-blue-400 hover:text-blue-500" href="/"> Sign Up</a>
-                    </div>
-
-                    <div class="divider">OR</div>
-
-
-                    <button class="btn h-12 px-6 w-64  mt-2 rounded font-semibold text-sm text-white">Continue with google</button>
-
-
 
                 </form>
+
+                <div class=" text-xs flex mt-2">
+                    <h1>New in todo app?   </h1>
+                    <p><Link to='/signup'> Sign Up</Link></p>
+                </div>
+
+                <div class="divider">OR</div>
+
+
+                {/* google log in */}
+                <div>
+                    <button
+                        onClick={() => signInWithGoogle()}
+                        class="btn h-12 px-6 w-64  mt-2 rounded font-semibold text-sm text-white"
+                    >Continue with google</button>
+                </div>
+
             </div>
         </div>
 
