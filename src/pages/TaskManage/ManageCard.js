@@ -17,7 +17,7 @@ const ManageCard = ({ task }) => {
         const confirmDelete = window.confirm('Sure to delete')
 
         if (confirmDelete) {
-            const url = `http://localhost:5000/task/${id}`
+            const url = `http://https://mysterious-anchorage-13295.herokuapp.com/task/${id}`
             fetch(url, {
                 method: 'DELETE',
             })
