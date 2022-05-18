@@ -6,7 +6,23 @@ const Modal = () => {
         event.preventDefault();
         const task = event.target.task.value
         const description = event.target.description.value
-        console.log(task, description)
+
+        const taskData = {
+            taskName: task,
+            taskDescription: description
+        }
+
+        fetch('http://localhost:5000/task', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(taskData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
     }
 
     return (
@@ -20,7 +36,7 @@ const Modal = () => {
             <div className="modal modal-bottom sm:modal-middle">
 
                 <div className="modal-box bg-white text-gray-700">
-                    <label htmlFor="booking-modal" className="btn btn-accent btn-circle absolute right-2 top-2 text-white">✕</label>
+                    <label htmlFor="my-modal" className="btn btn-accent btn-circle absolute right-2 top-2 text-white">✕</label>
                     <h3 className="font-bold text-lg text-accent">Add Your Task</h3>
 
 
